@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fit Lat | Ejercicios desde casa</title>
+<meta name="description" content="Fit Lat: ejercicios desde casa para trabajar todo el cuerpo sin equipo. Abdomen, cintura, glúteos, piernas, brazos, espalda, cardio y movilidad, con planificador semanal.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--dark:#111827;--dark2:#1f2937;--lime:#a3e635;--lime2:#84cc16;--emerald:#10b981;--bg:#f3f4f6;--card:#ffffff;--text:#1f2937;--muted:#6b7280;--danger:#dc2626}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+a{color:inherit}
+.container{max-width:960px;margin:0 auto;padding:0 16px}
+#gate{position:fixed;inset:0;z-index:100;background:var(--dark);display:flex;align-items:center;justify-content:center;padding:20px}
+#gate .gate-box{background:var(--dark2);border:2px solid var(--lime);border-radius:18px;padding:32px 24px;width:100%;max-width:400px;text-align:center}
+#gate h1{color:var(--lime);font-size:40px;letter-spacing:1px}
+#gate p{color:#e5e7eb;margin:10px 0 20px;font-size:15px}
+#gate-input{width:100%;padding:14px;font-size:18px;border-radius:10px;border:2px solid #374151;background:#111827;color:#fff;text-align:center;letter-spacing:2px;text-transform:uppercase}
+#gate-input:focus{outline:none;border-color:var(--lime)}
+#gate-btn{width:100%;margin-top:14px;padding:14px;font-size:17px;font-weight:700;border:none;border-radius:10px;background:var(--lime);color:#111827;cursor:pointer}
+#gate-btn:hover{background:var(--lime2)}
+#gate-error{display:none;color:#fca5a5;background:#450a0a;border-radius:8px;padding:10px;margin-top:14px;font-size:14px}
+#gate .wa{color:#9ca3af;font-size:13px;margin-top:18px}
+#main-content{display:none}
+header{background:var(--dark);color:#fff;padding:18px 0 14px}
+header .logo{font-size:30px;font-weight:900;letter-spacing:1px;color:var(--lime)}
+header .logo span{color:#fff}
+header p{color:#d1d5db;font-size:14px;margin-top:2px}
+nav{position:sticky;top:0;z-index:50;background:var(--dark2);border-top:1px solid #374151}
+nav .container{display:flex;gap:4px;overflow-x:auto;padding:8px 16px;scrollbar-width:none}
+nav a{color:#e5e7eb;text-decoration:none;font-size:14px;font-weight:600;padding:8px 12px;border-radius:999px;white-space:nowrap}
+nav a:hover{background:#374151;color:var(--lime)}
+.hero{background:var(--dark);color:#fff;padding:28px 0 34px;text-align:center}
+.hero h2{font-size:28px;line-height:1.25}
+.hero h2 em{color:var(--lime);font-style:normal}
+.hero p{color:#d1d5db;max-width:640px;margin:12px auto 0;font-size:16px}
+.price-notice{display:inline-block;margin-top:18px;background:var(--lime);color:#111827;font-weight:800;font-size:16px;padding:12px 20px;border-radius:12px}
+section{padding:30px 0}
+section h2{font-size:24px;margin-bottom:6px}
+section .sub{color:var(--muted);margin-bottom:18px;font-size:15px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.filters button{border:2px solid #d1d5db;background:#fff;padding:8px 14px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;color:var(--text)}
+.filters button.active{background:var(--dark);color:var(--lime);border-color:var(--dark)}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px}
+.toolbar input[type="search"]{flex:1;min-width:180px;padding:11px 14px;border-radius:10px;border:2px solid #d1d5db;font-size:15px;background:#fff}
+.toolbar label{font-weight:700;font-size:14px}
+.toolbar select{padding:11px;border-radius:10px;border:2px solid #d1d5db;font-size:15px;background:#fff}
+.grid{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:600px){.grid{grid-template-columns:1fr 1fr}}
+.card{background:var(--card);border-radius:14px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.card .zone-tag{display:inline-block;background:#ecfccb;color:#3f6212;font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:8px}
+.card h3{font-size:18px;margin-bottom:6px}
+.card .how{font-size:14px;color:#374151;margin-bottom:10px}
+.card .meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.card .meta span{background:#f3f4f6;border-radius:8px;padding:5px 9px;font-size:13px;font-weight:600}
+.card .tip{font-size:13px;color:#065f46;background:#ecfdf5;border-radius:8px;padding:8px 10px;margin-bottom:12px}
+.btn{display:inline-block;border:none;cursor:pointer;font-weight:700;font-size:15px;padding:11px 16px;border-radius:10px;background:var(--dark);color:#fff}
+.btn:hover{background:#374151}
+.btn-lime{background:var(--lime);color:#111827}
+.btn-lime:hover{background:var(--lime2)}
+.btn-outline{background:#fff;color:var(--dark);border:2px solid var(--dark)}
+.btn-sm{padding:8px 12px;font-size:14px}
+.routine-list{list-style:none;margin:10px 0 14px}
+.routine-list li{font-size:14px;padding:6px 0;border-bottom:1px solid #f3f4f6}
+.routine-list li:last-child{border-bottom:none}
+.day{margin-bottom:14px}
+.day-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.day-head h3{font-size:18px}
+.day-head label{font-size:14px;font-weight:600;color:var(--emerald);cursor:pointer}
+.day.done h3{color:var(--emerald);text-decoration:line-through}
+.day-items{list-style:none;margin-top:8px}
+.day-items li{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#f9fafb;border-radius:10px;padding:9px 12px;margin-bottom:6px;font-size:14px}
+.day-items li .rm{background:#fee2e2;color:#991b1b;border:none;border-radius:8px;padding:6px 10px;font-weight:700;cursor:pointer;font-size:13px}
+.empty{color:var(--muted);font-size:14px;padding:6px 2px}
+.summary{background:var(--dark);color:#fff;border-radius:14px;padding:18px;margin-top:16px}
+.summary h3{color:var(--lime);margin-bottom:8px}
+.summary p{font-size:15px}
+.plan-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+#copy-msg{display:none;color:#065f46;background:#d1fae5;border-radius:8px;padding:10px;margin-top:12px;font-size:14px;font-weight:600}
+.timer-box{text-align:center}
+#timer-display{font-size:64px;font-weight:900;letter-spacing:2px;margin:12px 0;font-variant-numeric:tabular-nums}
+#timer-display.finished{color:var(--emerald)}
+.timer-controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.timer-box input{padding:12px;font-size:18px;width:140px;text-align:center;border-radius:10px;border:2px solid #d1d5db}
+#timer-msg{margin-top:12px;font-size:15px;font-weight:700;color:var(--emerald);min-height:22px}
+.price-card{background:var(--dark);color:#fff;border-radius:16px;padding:26px;text-align:center}
+.price-card h3{color:var(--lime);font-size:26px;margin-bottom:8px}
+.price-card .big{font-size:40px;font-weight:900;margin:10px 0}
+.price-card .big small{font-size:18px;font-weight:600;color:#d1d5db}
+.price-card p{color:#d1d5db;font-size:15px;max-width:520px;margin:0 auto}
+.faq-item{background:var(--card);border-radius:12px;padding:16px 18px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.faq-item h3{font-size:16px;margin-bottom:5px}
+.faq-item p{font-size:14px;color:#374151}
+footer{background:var(--dark);color:#9ca3af;text-align:center;padding:22px 0;font-size:13px;margin-top:10px}
+</style>
+</head>
+<body>
+
+<div id="gate" role="dialog" aria-label="Acceso con código">
+  <div class="gate-box">
+    <h1>Fit Lat</h1>
+    <p>Entrena todo el cuerpo desde casa. Ingresa tu código de acceso para entrar.</p>
+    <input type="password" id="gate-input" placeholder="TU CÓDIGO" autocomplete="off" aria-label="Código de acceso">
+    <button type="button" id="gate-btn">Entrar</button>
+    <div id="gate-error">Código incorrecto, inténtalo de nuevo.</div>
+    <p class="wa">¿No tienes código? Escríbenos por WhatsApp al 56 5582 9704</p>
+  </div>
+</div>
+
+<div id="main-content">
+<header>
+  <div class="container">
+    <div class="logo">FIT <span>LAT</span></div>
+    <p>Entrena en casa, sin equipo y a tu ritmo.</p>
+  </div>
+</header>
+<nav>
+  <div class="container">
+    <a href="#ejercicios">Ejercicios</a>
+    <a href="#rutinas">Rutinas</a>
+    <a href="#semana">Mi semana</a>
+    <a href="#temporizador">Temporizador</a>
+    <a href="#precio">Precio</a>
+    <a href="#preguntas">Preguntas</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <h2>Entrena <em>todo el cuerpo</em> desde casa, sin equipo</h2>
+    <p>Abdomen, cintura, glúteos, piernas, brazos, espalda, cardio y movilidad. Elige tus ejercicios, arma tu rutina y sigue tu semana, todo en un solo lugar.</p>
+    <div class="price-notice">Primeros 3 meses gratis. Después $200 MXN al mes.</div>
+  </div>
+</section>
+
+<section id="ejercicios">
+  <div class="container">
+    <h2>Ejercicios</h2>
+    <p class="sub">48 ejercicios de peso corporal para hacer en casa. Filtra por zona o busca por nombre.</p>
+    <div class="filters" id="filter-buttons">
+      <button type="button" class="active" data-zone="todos">Todos</button>
+      <button type="button" data-zone="abdomen">Abdomen</button>
+      <button type="button" data-zone="cintura">Cintura</button>
+      <button type="button" data-zone="gluteos">Glúteos</button>
+      <button type="button" data-zone="piernas">Piernas</button>
+      <button type="button" data-zone="brazos">Brazos y pecho</button>
+      <button type="button" data-zone="espalda">Espalda</button>
+      <button type="button" data-zone="cardio">Cardio</button>
+      <button type="button" data-zone="movilidad">Movilidad</button>
+    </div>
+    <div class="toolbar">
+      <input type="search" id="search-input" placeholder="Buscar ejercicio por nombre..." aria-label="Buscar ejercicio">
+      <label for="day-select">Agregar a:</label>
+      <select id="day-select">
+        <option value="Lunes" selected>Lunes</option>
+        <option value="Martes">Martes</option>
+        <option value="Miércoles">Miércoles</option>
+        <option value="Jueves">Jueves</option>
+        <option value="Viernes">Viernes</option>
+        <option value="Sábado">Sábado</option>
+        <option value="Domingo">Domingo</option>
+      </select>
+    </div>
+    <div class="grid" id="exercise-grid"></div>
+  </div>
+</section>
+
+<section id="rutinas">
+  <div class="container">
+    <h2>Rutinas listas</h2>
+    <p class="sub">Cuatro rutinas armadas para empezar hoy. Usa "Cargar al plan" para agregarlas al día que elegiste arriba (por defecto, Lunes).</p>
+    <div class="grid" id="routine-grid"></div>
+  </div>
+</section>
+
+<section id="semana">
+  <div class="container">
+    <h2>Mi semana</h2>
+    <p class="sub">Tu plan se arma aquí y vive solo durante tu visita. Descárgalo o cópialo para conservarlo.</p>
+    <div id="plan-days"></div>
+    <div class="summary" id="summary"></div>
+    <div class="plan-actions">
+      <button type="button" class="btn btn-lime" id="auto-week-btn">Generar semana automática</button>
+      <button type="button" class="btn" id="download-btn">Descargar plan</button>
+      <button type="button" class="btn btn-outline" id="copy-btn">Copiar plan</button>
+    </div>
+    <div id="copy-msg">Plan copiado. Pégalo donde quieras guardarlo.</div>
+  </div>
+</section>
+
+<section id="temporizador">
+  <div class="container">
+    <h2>Temporizador</h2>
+    <p class="sub">Para planchas, isométricos e intervalos. Escribe los segundos y dale a Iniciar.</p>
+    <div class="card timer-box">
+      <input type="number" id="timer-input" value="60" min="1" max="3600" aria-label="Segundos">
+      <div id="timer-display">01:00</div>
+      <div class="timer-controls">
+        <button type="button" class="btn btn-lime" id="timer-start">Iniciar</button>
+        <button type="button" class="btn" id="timer-pause">Pausar</button>
+        <button type="button" class="btn btn-outline" id="timer-reset">Reiniciar</button>
+      </div>
+      <div id="timer-msg"></div>
+    </div>
+  </div>
+</section>
+
+<section id="precio">
+  <div class="container">
+    <h2>Precio</h2>
+    <p class="sub">Sin letras chicas.</p>
+    <div class="price-card">
+      <h3>Fit Lat</h3>
+      <div class="big">$0 <small>/ primeros 3 meses</small></div>
+      <p>Primeros 3 meses gratis. Después $200 MXN al mes.</p>
+      <p style="margin-top:10px">Acceso completo a los 48 ejercicios, las 4 rutinas, el planificador semanal y el temporizador, desde cualquier celular o computadora.</p>
+    </div>
+  </div>
+</section>
+
+<section id="preguntas">
+  <div class="container">
+    <h2>Preguntas frecuentes</h2>
+    <p class="sub">Lo que más nos preguntan antes de empezar.</p>
+    <div class="faq-item">
+      <h3>¿Cuánto cuesta Fit Lat?</h3>
+      <p>Primeros 3 meses gratis. Después $200 MXN al mes.</p>
+    </div>
+    <div class="faq-item">
+      <h3>¿Necesito equipo o pesas?</h3>
+      <p>No. Todos los ejercicios son de peso corporal y se hacen en casa. Solo en algunos se usa una silla firme, una pared o una botella con agua como apoyo.</p>
+    </div>
+    <div class="faq-item">
+      <h3>¿Cómo consigo el código de acceso?</h3>
+      <p>Escríbenos por WhatsApp al 56 5582 9704 y te damos tu código de acceso. El mismo código sirve para entrar desde cualquier dispositivo.</p>
+    </div>
+    <div class="faq-item">
+      <h3>¿Qué pasa después de los 3 meses gratis?</h3>
+      <p>Después de los 3 meses gratis, el acceso cuesta $200 MXN al mes. Sin permanencia forzosa: si no continúas, simplemente dejas de tener acceso.</p>
+    </div>
+    <div class="faq-item">
+      <h3>¿Puedo entrenar todos los días?</h3>
+      <p>Sí. El planificador rota las zonas para no repetir la misma zona dos días seguidos. Descansa cuando tu cuerpo lo pida y mantén buena técnica antes de subir la intensidad.</p>
+    </div>
+    <div class="faq-item">
+      <h3>¿Los ejercicios sirven para principiantes?</h3>
+      <p>Sí. Cada ejercicio indica su nivel (Principiante, Intermedio o Avanzado) y trae consejo de técnica. Empieza por los de nivel principiante y avanza poco a poco.</p>
+    </div>
+  </div>
+</section>
+</div>
+<footer>
+  <div class="container">Fit Lat — Entrena desde casa. ¿No tienes código? Escríbenos por WhatsApp al 56 5582 9704</div>
+</footer>
+<script>
+const ACCESS_CODE = 'FITLAT21';
+const ZONES = {"abdomen":"Abdomen","cintura":"Cintura","gluteos":"Glúteos","piernas":"Piernas","brazos":"Brazos y pecho","espalda":"Espalda","cardio":"Cardio","movilidad":"Movilidad"};
+const DAYS = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
+const EXERCISES = [
+{n:"Crunch abdominal",z:"abdomen",h:"Acuéstate boca arriba, rodillas flexionadas y pies apoyados. Sube el torso contrayendo el abdomen, sin jalar el cuello con las manos.",d:"3 series x 15 repeticiones",l:"Principiante",t:"Exhala al subir y mantén la mirada hacia el techo.",m:5},
+{n:"Plancha",z:"abdomen",h:"Apoya antebrazos y puntas de los pies, con el cuerpo recto de la cabeza a los talones. Contrae abdomen y glúteos y sostén la posición.",d:"3 series x 30 segundos",l:"Principiante",t:"No dejes caer la cadera ni la subas de más.",m:5},
+{n:"Elevación de piernas",z:"abdomen",h:"Boca arriba, manos bajo la cadera. Sube las piernas rectas hasta 90 grados y baja lento sin tocar el piso.",d:"3 series x 12 repeticiones",l:"Intermedio",t:"Si la espalda baja se despega del piso, flexiona un poco las rodillas.",m:5},
+{n:"Giros rusos",z:"abdomen",h:"Sentado, rodillas flexionadas y pies apoyados o en el aire. Gira el torso a cada lado con las manos juntas frente al pecho.",d:"3 series x 20 giros",l:"Intermedio",t:"Mantén la espalda recta y gira desde el abdomen, no solo con los brazos.",m:5},
+{n:"Escaladores",z:"abdomen",h:"En plancha alta, lleva las rodillas al pecho alternando, a ritmo constante y controlado.",d:"3 series x 40 segundos",l:"Intermedio",t:"Cadera estable, sin rebotar con la espalda.",m:5},
+{n:"Plancha lateral",z:"abdomen",h:"Apoya un antebrazo y el costado del pie, con el cuerpo recto. Sostén y cambia de lado.",d:"3 series x 20 segundos por lado",l:"Avanzado",t:"No dejes que la cadera baje; respira parejo.",m:5},
+{n:"Giros de pie con palo",z:"cintura",h:"De pie, con un palo de escoba tras el cuello sobre los hombros. Gira el torso lento hacia cada lado.",d:"3 series x 20 giros",l:"Principiante",t:"Cadera quieta: gira solo el torso.",m:4},
+{n:"Elevación lateral de rodilla",z:"cintura",h:"De pie, manos tras la nuca. Sube la rodilla hacia el codo del mismo lado, inclinando el torso.",d:"3 series x 15 por lado",l:"Principiante",t:"Inclina el torso hacia la rodilla sin jalar el cuello.",m:4},
+{n:"Plancha lateral con elevación de cadera",z:"cintura",h:"En plancha lateral, baja la cadera casi hasta el piso y vuelve a subir, de forma controlada.",d:"3 series x 12 por lado",l:"Intermedio",t:"Movimiento controlado, sin desplomarte al bajar.",m:5},
+{n:"Bicicleta abdominal",z:"cintura",h:"Boca arriba, lleva el codo hacia la rodilla contraria alternando, con las piernas en el aire.",d:"3 series x 20 repeticiones",l:"Intermedio",t:"No jales el cuello; el trabajo es del abdomen.",m:5},
+{n:"Toque de talones",z:"cintura",h:"Boca arriba, rodillas flexionadas. Toca un talón y luego el otro con las manos, sin levantar la cabeza.",d:"3 series x 20 toques",l:"Principiante",t:"Desliza los hombros hacia los lados, sin levantar el cuello.",m:4},
+{n:"Plancha con rotación",z:"cintura",h:"En plancha alta, rota el cuerpo y lleva un brazo hacia el techo. Alterna de lado.",d:"3 series x 10 por lado",l:"Avanzado",t:"Aprieta abdomen y glúteos al rotar.",m:5},
+{n:"Sentadilla",z:"gluteos",h:"Pies al ancho de hombros. Baja como si te sentaras, con las rodillas en línea con los pies y el pecho arriba.",d:"4 series x 15 repeticiones",l:"Principiante",t:"Peso en los talones y rodillas sin irse hacia adentro.",m:5},
+{n:"Puente de glúteo",z:"gluteos",h:"Boca arriba, rodillas flexionadas. Sube la cadera apretando los glúteos y sostén 2 segundos arriba.",d:"4 series x 15 repeticiones",l:"Principiante",t:"No arquees la espalda al subir.",m:5},
+{n:"Zancada",z:"gluteos",h:"Da un paso largo, baja la rodilla trasera casi al piso con el torso recto y empuja con la pierna de adelante.",d:"3 series x 12 por pierna",l:"Intermedio",t:"La rodilla de adelante no pasa la punta del pie.",m:6},
+{n:"Patada de glúteo en cuatro puntos",z:"gluteos",h:"En cuatro puntos, empuja una pierna flexionada hacia el techo sin mover la cadera.",d:"3 series x 15 por pierna",l:"Principiante",t:"Aprieta el glúteo arriba sin arquear la espalda.",m:5},
+{n:"Sentadilla búlgara con silla",z:"gluteos",h:"Pie trasero apoyado en una silla firme. Baja con la pierna de adelante hasta que la rodilla quede a 90 grados.",d:"3 series x 10 por pierna",l:"Avanzado",t:"Tronco recto y rodilla alineada con el pie.",m:6},
+{n:"Puente de glúteo a una pierna",z:"gluteos",h:"Como el puente normal, pero con una pierna extendida en el aire. Sube la cadera con la otra pierna.",d:"3 series x 12 por pierna",l:"Avanzado",t:"Cadera nivelada, sin ladearse.",m:6},
+{n:"Sentadilla sumo",z:"piernas",h:"Pies más anchos que los hombros, puntas hacia afuera. Baja manteniendo la espalda recta.",d:"4 series x 15 repeticiones",l:"Principiante",t:"Empuja el piso con todo el pie al subir.",m:5},
+{n:"Zancada lateral",z:"piernas",h:"Da un paso largo hacia un lado, flexiona esa pierna y mantén la otra recta.",d:"3 series x 12 por lado",l:"Intermedio",t:"Cadera hacia atrás y pecho arriba.",m:6},
+{n:"Elevación de talones",z:"piernas",h:"De pie, súbete a la punta de los pies y baja lento. Apóyate en una pared si necesitas equilibrio.",d:"4 series x 20 repeticiones",l:"Principiante",t:"Pausa 1 segundo arriba y baja de forma controlada.",m:4},
+{n:"Sentadilla isométrica en la pared",z:"piernas",h:"Espalda pegada a la pared. Baja hasta que las rodillas queden a 90 grados y sostén la posición.",d:"3 series x 30 segundos",l:"Principiante",t:"Rodillas sobre los tobillos, no más adelante.",m:4},
+{n:"Sentadilla con pausa",z:"piernas",h:"Baja a sentadilla, sostén 3 segundos abajo y sube sin impulso.",d:"3 series x 12 repeticiones",l:"Intermedio",t:"No rebotes abajo; controla todo el movimiento.",m:5},
+{n:"Zancada hacia atrás",z:"piernas",h:"Da un paso hacia atrás, baja la rodilla y regresa. Alterna las piernas.",d:"3 series x 12 por pierna",l:"Intermedio",t:"Torso recto y paso largo y estable.",m:6},
+{n:"Flexión de pecho",z:"brazos",h:"Manos bajo los hombros, cuerpo recto. Baja el pecho casi al piso y empuja para subir.",d:"4 series x 12 repeticiones",l:"Intermedio",t:"Si cuesta, apoya las rodillas sin perder la línea del cuerpo.",m:5},
+{n:"Flexión inclinada en silla",z:"brazos",h:"Manos apoyadas en una silla firme. Baja el pecho de forma controlada y empuja.",d:"3 series x 12 repeticiones",l:"Principiante",t:"Pon la silla contra la pared para que no se mueva.",m:5},
+{n:"Fondos en silla",z:"brazos",h:"Manos en el borde de una silla firme. Baja el cuerpo flexionando los codos y sube.",d:"3 series x 12 repeticiones",l:"Intermedio",t:"Codos hacia atrás y hombros lejos de las orejas.",m:5},
+{n:"Flexión diamante",z:"brazos",h:"Manos juntas formando un triángulo bajo el pecho. Baja y empuja manteniendo el cuerpo recto.",d:"3 series x 10 repeticiones",l:"Avanzado",t:"Codos pegados al cuerpo durante todo el movimiento.",m:5},
+{n:"Plancha con toque de hombro",z:"brazos",h:"En plancha alta, toca el hombro contrario con una mano. Alterna sin mover la cadera.",d:"3 series x 20 toques",l:"Intermedio",t:"Aprieta abdomen y glúteos para no balancearte.",m:5},
+{n:"Press con botellas",z:"brazos",h:"Con una botella con agua en cada mano, empuja hacia arriba desde los hombros y baja lento.",d:"3 series x 15 repeticiones",l:"Principiante",t:"Controla la bajada; no dejes caer las botellas.",m:5},
+{n:"Superman",z:"espalda",h:"Boca abajo, levanta brazos y piernas a la vez, sostén 2 segundos y baja.",d:"3 series x 15 repeticiones",l:"Principiante",t:"Mira al piso; no levantes la cabeza de más.",m:4},
+{n:"Remo con botella",z:"espalda",h:"Inclina el torso con la espalda recta. Jala la botella hacia la cadera y baja lento.",d:"3 series x 12 por brazo",l:"Intermedio",t:"El codo va pegado al cuerpo.",m:5},
+{n:"Ángel invertido",z:"espalda",h:"Boca abajo, brazos extendidos a los lados. Levanta el pecho y los brazos, apretando la espalda.",d:"3 series x 12 repeticiones",l:"Principiante",t:"Movimiento lento, sin tirones.",m:4},
+{n:"Jalón con toalla",z:"espalda",h:"Sostén una toalla con ambas manos sobre la cabeza. Jálala hacia atrás del cuello y regresa.",d:"3 series x 15 repeticiones",l:"Principiante",t:"Codos abiertos y espalda recta.",m:4},
+{n:"Pájaro",z:"espalda",h:"En cuatro puntos, extiende un brazo y la pierna contraria. Sostén 2 segundos y cambia de lado.",d:"3 series x 12 por lado",l:"Principiante",t:"Espalda recta, sin rotar la cadera.",m:5},
+{n:"Remo invertido en mesa",z:"espalda",h:"Bajo una mesa firme y pesada, agárrate del borde y jala el pecho hacia la mesa.",d:"3 series x 10 repeticiones",l:"Avanzado",t:"Mesa estable y cuerpo recto de pies a hombros.",m:6},
+{n:"Saltos de tijera",z:"cardio",h:"Salta abriendo piernas y brazos a la vez y regresa a la posición inicial.",d:"4 series x 40 segundos",l:"Principiante",t:"Caída suave, con las rodillas un poco flexionadas.",m:5},
+{n:"Burpees sin salto",z:"cardio",h:"Baja las manos al piso, lleva los pies atrás a plancha, regresa y levántate.",d:"3 series x 10 repeticiones",l:"Avanzado",t:"Espalda recta al bajar y respiración pareja.",m:6},
+{n:"Rodillas al pecho",z:"cardio",h:"Corre en tu lugar subiendo las rodillas a la altura de la cadera.",d:"4 series x 30 segundos",l:"Intermedio",t:"Pisa con la punta del pie y mantén el torso recto.",m:5},
+{n:"Sentadilla con salto",z:"cardio",h:"Haz una sentadilla y salta al subir. Cae suave y repite.",d:"3 series x 12 repeticiones",l:"Avanzado",t:"Caída suave y rodillas alineadas con los pies.",m:6},
+{n:"Escaladores rápidos",z:"cardio",h:"En plancha alta, alterna las rodillas al pecho lo más rápido que puedas con control.",d:"4 series x 30 segundos",l:"Intermedio",t:"Cadera baja y estable.",m:5},
+{n:"Paso rápido con toque",z:"cardio",h:"Corre en tu lugar y toca el piso con una mano cada 4 pasos.",d:"3 series x 40 segundos",l:"Principiante",t:"Mantén un ritmo parejo, sin parar de golpe.",m:5},
+{n:"Gato-vaca",z:"movilidad",h:"En cuatro puntos, arquea y redondea la espalda alternando, siguiendo tu respiración.",d:"3 series x 10 ciclos",l:"Principiante",t:"Mueve vértebra por vértebra, sin prisa.",m:4},
+{n:"Círculos de cadera",z:"movilidad",h:"De pie, manos en la cintura. Dibuja círculos amplios con la cadera en ambos sentidos.",d:"2 series x 10 por lado",l:"Principiante",t:"Círculos lentos y amplios.",m:4},
+{n:"Estiramiento de isquiotibiales",z:"movilidad",h:"De pie, un pie sobre una silla baja. Inclina el torso recto hacia la pierna y sostén.",d:"2 series x 30 segundos por pierna",l:"Principiante",t:"Espalda recta, sin rebotar.",m:4},
+{n:"Rotación de hombros",z:"movilidad",h:"Brazos extendidos. Dibuja círculos grandes hacia adelante y hacia atrás.",d:"2 series x 10 por sentido",l:"Principiante",t:"Círculos amplios y controlados.",m:4},
+{n:"Apertura de pecho en pared",z:"movilidad",h:"Antebrazo apoyado en una pared. Gira el cuerpo hacia el lado contrario y sostén.",d:"2 series x 30 segundos por lado",l:"Intermedio",t:"Giro suave, sin forzar.",m:4},
+{n:"Sentadilla profunda sostenida",z:"movilidad",h:"Baja a sentadilla profunda con los talones apoyados y sostén, con la espalda recta.",d:"3 series x 20 segundos",l:"Intermedio",t:"Si los talones se levantan, apóyalos en una toalla doblada.",m:4}
+];
+const ROUTINES = [
+{name:"Abdomen fuerte",minutes:15,items:[["Plancha","3 series x 30 segundos",5],["Crunch abdominal","3 series x 15 repeticiones",5],["Giros rusos","3 series x 20 giros",5],["Elevación de piernas","3 series x 12 repeticiones",5]]},
+{name:"Glúteos en casa",minutes:20,items:[["Sentadilla","4 series x 15 repeticiones",5],["Puente de glúteo","4 series x 15 repeticiones",5],["Zancada","3 series x 12 por pierna",6],["Patada de glúteo en cuatro puntos","3 series x 15 por pierna",5]]},
+{name:"Cintura",minutes:15,items:[["Giros de pie con palo","3 series x 20 giros",4],["Toque de talones","3 series x 20 toques",4],["Bicicleta abdominal","3 series x 20 repeticiones",5],["Plancha lateral","3 series x 20 segundos por lado",5]]},
+{name:"Cuerpo completo",minutes:20,items:[["Sentadilla","3 series x 15 repeticiones",5],["Flexión de pecho","3 series x 12 repeticiones",5],["Superman","3 series x 15 repeticiones",4],["Saltos de tijera","3 series x 40 segundos",5],["Plancha","3 series x 30 segundos",5]]}
+];
+let activeZone = "todos";
+let searchText = "";
+let plan = {};
+let doneDays = {};
+DAYS.forEach(function(d){ plan[d] = []; doneDays[d] = false; });
+
+function $(id){ return document.getElementById(id); }
+
+function unlock(){
+  $("gate").style.display = "none";
+  $("main-content").style.display = "block";
+  try { localStorage.setItem("fitlat_access", "ok"); } catch(e) {}
+}
+function tryUnlock(){
+  const val = $("gate-input").value.trim().toUpperCase();
+  if (val === ACCESS_CODE) {
+    $("gate-error").style.display = "none";
+    unlock();
+  } else {
+    $("gate-error").style.display = "block";
+  }
+}
+$("gate-btn").addEventListener("click", tryUnlock);
+$("gate-input").addEventListener("keydown", function(ev){ if (ev.key === "Enter") { tryUnlock(); } });
+try {
+  if (localStorage.getItem("fitlat_access") === "ok") { unlock(); }
+} catch(e) {}
+
+function escapeHtml(s){
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+function renderExercises(){
+  const grid = $("exercise-grid");
+  const q = searchText.trim().toLowerCase();
+  const list = EXERCISES.filter(function(ex){
+    const zoneOk = activeZone === "todos" || ex.z === activeZone;
+    const searchOk = q === "" || ex.n.toLowerCase().indexOf(q) !== -1;
+    return zoneOk && searchOk;
+  });
+  if (list.length === 0) {
+    grid.innerHTML = '<p class="empty">No se encontraron ejercicios con ese filtro. Prueba con otra zona o palabra.</p>';
+    return;
+  }
+  grid.innerHTML = list.map(function(ex){
+    return '<article class="card">'
+      + '<span class="zone-tag">' + escapeHtml(ZONES[ex.z]) + '</span>'
+      + '<h3>' + escapeHtml(ex.n) + '</h3>'
+      + '<p class="how">' + escapeHtml(ex.h) + '</p>'
+      + '<div class="meta"><span>' + escapeHtml(ex.d) + '</span><span>Nivel: ' + escapeHtml(ex.l) + '</span><span>~' + ex.m + ' min</span></div>'
+      + '<p class="tip">Consejo: ' + escapeHtml(ex.t) + '</p>'
+      + '<button type="button" class="btn btn-lime btn-sm add-btn" data-name="' + escapeHtml(ex.n) + '" data-dose="' + escapeHtml(ex.d) + '" data-min="' + ex.m + '">+ A mi plan</button>'
+      + '</article>';
+  }).join("");
+}
+$("filter-buttons").addEventListener("click", function(ev){
+  const btn = ev.target.closest("button[data-zone]");
+  if (!btn) { return; }
+  activeZone = btn.getAttribute("data-zone");
+  const all = $("filter-buttons").querySelectorAll("button");
+  all.forEach(function(b){ b.classList.toggle("active", b === btn); });
+  renderExercises();
+});
+$("search-input").addEventListener("input", function(ev){
+  searchText = ev.target.value;
+  renderExercises();
+});
+$("exercise-grid").addEventListener("click", function(ev){
+  const btn = ev.target.closest(".add-btn");
+  if (!btn) { return; }
+  const day = $("day-select").value;
+  plan[day].push({name: btn.getAttribute("data-name"), dose: btn.getAttribute("data-dose"), min: parseInt(btn.getAttribute("data-min"), 10) || 5});
+  renderPlan();
+  document.getElementById("semana").scrollIntoView({behavior: "smooth"});
+});
+
+function renderRoutines(){
+  $("routine-grid").innerHTML = ROUTINES.map(function(r, idx){
+    const items = r.items.map(function(it){ return "<li>" + escapeHtml(it[0]) + " — " + escapeHtml(it[1]) + "</li>"; }).join("");
+    return '<article class="card"><h3>' + escapeHtml(r.name) + '</h3>'
+      + '<div class="meta"><span>' + r.items.length + ' ejercicios</span><span>~' + r.minutes + ' min</span></div>'
+      + '<ul class="routine-list">' + items + '</ul>'
+      + '<button type="button" class="btn btn-lime routine-btn" data-idx="' + idx + '">Cargar al plan</button></article>';
+  }).join("");
+}
+$("routine-grid").addEventListener("click", function(ev){
+  const btn = ev.target.closest(".routine-btn");
+  if (!btn) { return; }
+  const r = ROUTINES[parseInt(btn.getAttribute("data-idx"), 10)];
+  const day = $("day-select").value;
+  r.items.forEach(function(it){ plan[day].push({name: it[0], dose: it[1], min: it[2]}); });
+  renderPlan();
+  document.getElementById("semana").scrollIntoView({behavior: "smooth"});
+});
+
+function renderPlan(){
+  const wrap = $("plan-days");
+  wrap.innerHTML = DAYS.map(function(day){
+    const items = plan[day];
+    const body = items.length === 0
+      ? '<p class="empty">Sin ejercicios todavía.</p>'
+      : '<ul class="day-items">' + items.map(function(it, i){
+          return '<li><span><strong>' + escapeHtml(it.name) + '</strong> — ' + escapeHtml(it.dose) + '</span>'
+            + '<button type="button" class="rm" data-day="' + escapeHtml(day) + '" data-i="' + i + '">Quitar</button></li>';
+        }).join("") + '</ul>';
+    return '<div class="card day' + (doneDays[day] ? ' done' : '') + '">'
+      + '<div class="day-head"><h3>' + escapeHtml(day) + '</h3>'
+      + '<label><input type="checkbox" class="done-check" data-day="' + escapeHtml(day) + '"' + (doneDays[day] ? ' checked' : '') + '> Marcar día completado</label></div>'
+      + body + '</div>';
+  }).join("");
+  let daysPlanned = 0, totalEx = 0, totalMin = 0;
+  DAYS.forEach(function(day){
+    if (plan[day].length > 0) { daysPlanned += 1; }
+    totalEx += plan[day].length;
+    plan[day].forEach(function(it){ totalMin += it.min; });
+  });
+  $("summary").innerHTML = "<h3>Resumen de la semana</h3><p>Días con plan: <strong>" + daysPlanned + " de 7</strong> &nbsp;|&nbsp; Ejercicios totales: <strong>" + totalEx + "</strong> &nbsp;|&nbsp; Tiempo estimado: <strong>" + totalMin + " min</strong></p>";
+}
+$("plan-days").addEventListener("click", function(ev){
+  const btn = ev.target.closest(".rm");
+  if (!btn) { return; }
+  const day = btn.getAttribute("data-day");
+  const i = parseInt(btn.getAttribute("data-i"), 10);
+  plan[day].splice(i, 1);
+  renderPlan();
+});
+$("plan-days").addEventListener("change", function(ev){
+  const chk = ev.target.closest(".done-check");
+  if (!chk) { return; }
+  doneDays[chk.getAttribute("data-day")] = chk.checked;
+  renderPlan();
+});
+
+function autoWeek(){
+  const rotation = ["piernas","brazos","cardio","abdomen","gluteos","espalda","cintura"];
+  DAYS.forEach(function(day, di){
+    const zone = rotation[di];
+    const pool = EXERCISES.filter(function(ex){ return ex.z === zone; });
+    const picks = pool.slice(0, 3);
+    plan[day] = picks.map(function(ex){ return {name: ex.n, dose: ex.d, min: ex.m}; });
+    if (day === "Domingo") {
+      const mob = EXERCISES.filter(function(ex){ return ex.z === "movilidad"; })[0];
+      plan[day].push({name: mob.n, dose: mob.d, min: mob.m});
+    }
+  });
+  renderPlan();
+}
+$("auto-week-btn").addEventListener("click", autoWeek);
+
+function planText(){
+  const lines = ["FIT LAT — MI PLAN SEMANAL", ""];
+  DAYS.forEach(function(day){
+    lines.push(day.toUpperCase() + (doneDays[day] ? " (completado)" : "") + ":");
+    if (plan[day].length === 0) {
+      lines.push("  - Sin ejercicios");
+    } else {
+      plan[day].forEach(function(it){ lines.push("  - " + it.name + " — " + it.dose); });
+    }
+    lines.push("");
+  });
+  return lines.join("\n");
+}
+$("download-btn").addEventListener("click", function(){
+  const blob = new Blob([planText()], {type: "text/plain;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "plan-fit-lat.txt";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 500);
+});
+$("copy-btn").addEventListener("click", function(){
+  const text = planText();
+  $("copy-msg").style.display = "none";
+  function show(){ $("copy-msg").style.display = "block"; }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(show, function(){ fallbackCopy(text); show(); });
+  } else {
+    fallbackCopy(text);
+    show();
+  }
+});
+function fallbackCopy(text){
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } catch(e) {}
+  document.body.removeChild(ta);
+}
+
+let timerId = null;
+let timerLeft = 60;
+let timerRunning = false;
+function fmt(s){
+  const mm = Math.floor(s / 60);
+  const ss = s % 60;
+  return (mm < 10 ? "0" + mm : "" + mm) + ":" + (ss < 10 ? "0" + ss : "" + ss);
+}
+function paintTimer(){
+  $("timer-display").textContent = fmt(timerLeft);
+  $("timer-display").classList.toggle("finished", timerLeft === 0);
+}
+function stopTimer(){
+  if (timerId !== null) { clearInterval(timerId); timerId = null; }
+  timerRunning = false;
+}
+$("timer-input").addEventListener("change", function(){
+  let v = parseInt($("timer-input").value, 10);
+  if (isNaN(v) || v < 1) { v = 1; }
+  if (v > 3600) { v = 3600; }
+  $("timer-input").value = v;
+  stopTimer();
+  timerLeft = v;
+  $("timer-msg").textContent = "";
+  paintTimer();
+});
+$("timer-start").addEventListener("click", function(){
+  if (timerRunning) { return; }
+  if (timerLeft <= 0) {
+    let v = parseInt($("timer-input").value, 10);
+    if (isNaN(v) || v < 1) { v = 60; }
+    timerLeft = v;
+    $("timer-msg").textContent = "";
+  }
+  timerRunning = true;
+  paintTimer();
+  timerId = setInterval(function(){
+    timerLeft -= 1;
+    if (timerLeft <= 0) {
+      timerLeft = 0;
+      stopTimer();
+      $("timer-msg").textContent = "¡Tiempo cumplido! Buen trabajo.";
+    }
+    paintTimer();
+  }, 1000);
+});
+$("timer-pause").addEventListener("click", function(){
+  stopTimer();
+  paintTimer();
+});
+$("timer-reset").addEventListener("click", function(){
+  stopTimer();
+  let v = parseInt($("timer-input").value, 10);
+  if (isNaN(v) || v < 1) { v = 60; }
+  timerLeft = v;
+  $("timer-msg").textContent = "";
+  paintTimer();
+});
+
+renderExercises();
+renderRoutines();
+renderPlan();
+paintTimer();
+</script>
+</body>
+</html>
