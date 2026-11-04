@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fit Lat | Ejercicios desde casa</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&display=swap">
 <meta name="description" content="Fit Lat: ejercicios desde casa para trabajar todo el cuerpo sin equipo. Abdomen, cintura, glúteos, piernas, brazos, espalda, cardio y movilidad, con planificador semanal.">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -93,12 +94,52 @@ section .sub{color:var(--muted);margin-bottom:18px;font-size:15px}
 .faq-item h3{font-size:16px;margin-bottom:5px}
 .faq-item p{font-size:14px;color:#374151}
 footer{background:var(--dark);color:#9ca3af;text-align:center;padding:22px 0;font-size:13px;margin-top:10px}
+/* --- Visual upgrade --- */
+h1,h2,h3,.logo,.stat-num,#timer-display{font-family:'Archivo',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+#gate{background:linear-gradient(160deg,#0b1220,#111827 55%,#14532d)}
+.gate-mark{width:64px;height:64px;margin:0 auto 14px;border-radius:50%;background:var(--lime);color:#111827;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;letter-spacing:1px;box-shadow:0 8px 24px rgba(163,230,53,.35)}
+#gate .gate-box{box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.hero{position:relative;overflow:hidden;padding:48px 0 42px}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,24,39,.84),rgba(17,24,39,.66) 55%,rgba(17,24,39,.94))}
+.hero-content{position:relative;z-index:1}
+.stats{display:flex;gap:24px;justify-content:center;margin:24px 0 6px;flex-wrap:wrap}
+.stat{display:flex;flex-direction:column;align-items:center;min-width:88px}
+.stat-num{font-size:36px;font-weight:900;color:var(--lime);line-height:1;font-variant-numeric:tabular-nums}
+.stat-label{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#e5e7eb;margin-top:5px}
+section:not(.hero) h2{display:flex;align-items:center;gap:10px}
+section:not(.hero) h2::before{content:"";width:8px;height:26px;border-radius:4px;background:var(--lime);flex:none}
+.zone-showcase{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+@media(min-width:600px){.zone-showcase{grid-template-columns:repeat(4,1fr)}}
+.zone-card{font:inherit;border:none;background:none;padding:0;text-align:left;cursor:pointer;border-radius:14px;overflow:hidden;position:relative;box-shadow:0 2px 8px rgba(0,0,0,.08);transition:transform .25s ease,box-shadow .25s ease}
+.zone-card:hover{transform:translateY(-4px);box-shadow:0 12px 26px rgba(0,0,0,.16)}
+.zone-card.active{outline:3px solid var(--lime);outline-offset:2px}
+.zone-photo{display:block;aspect-ratio:4/3;overflow:hidden;background:linear-gradient(135deg,#1f2937,#10b981)}
+.zone-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.zone-name{position:absolute;left:0;right:0;bottom:0;padding:26px 12px 10px;color:#fff;font-weight:800;font-size:16px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.78));display:block}
+.zone-name small{display:block;font-weight:600;font-size:12px;color:#d1d5db}
+.card{transition:transform .25s ease,box-shadow .25s ease}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 26px rgba(0,0,0,.13)}
+.grid .card{animation:cardIn .3s ease both}
+@keyframes cardIn{from{opacity:0}to{opacity:1}}
+.btn{transition:transform .12s ease,background .2s ease,box-shadow .2s ease}
+.btn:active{transform:scale(.97)}
+nav a.active{background:var(--lime);color:#111827}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none}.grid .card{animation:none}}
+.smoothie-photo{display:block;aspect-ratio:4/3;overflow:hidden;background:linear-gradient(135deg,#1f2937,#10b981);border-radius:12px 12px 0 0;margin:-16px -16px 12px}
+.smoothie-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.smoothie-time{display:inline-block;background:#ecfdf5;color:#065f46;font-weight:700;font-size:13px;padding:3px 10px;border-radius:999px;margin-bottom:8px}
+.smoothie-ing{margin:0 0 10px;padding-left:18px}
+.smoothie-ing li{margin-bottom:3px}
 </style>
 </head>
 <body>
 
 <div id="gate" role="dialog" aria-label="Acceso con código">
   <div class="gate-box">
+    <div class="gate-mark" aria-hidden="true">FL</div>
     <h1>Fit Lat</h1>
     <p>Entrena todo el cuerpo desde casa. Ingresa tu código de acceso para entrar.</p>
     <input type="password" id="gate-input" placeholder="TU CÓDIGO" autocomplete="off" aria-label="Código de acceso">
@@ -119,6 +160,7 @@ footer{background:var(--dark);color:#9ca3af;text-align:center;padding:22px 0;fon
   <div class="container">
     <a href="#ejercicios">Ejercicios</a>
     <a href="#rutinas">Rutinas</a>
+    <a href="#batidos">Batidos</a>
     <a href="#semana">Mi semana</a>
     <a href="#temporizador">Temporizador</a>
     <a href="#precio">Precio</a>
@@ -127,17 +169,34 @@ footer{background:var(--dark);color:#9ca3af;text-align:center;padding:22px 0;fon
 </nav>
 
 <section class="hero">
-  <div class="container">
+  <img class="hero-img" src="https://images.pexels.com/photos/4587364/pexels-photo-4587364.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Mujer haciendo sentadilla con mancuernas en casa" loading="lazy" onerror="this.style.display='none'">
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="container hero-content">
     <h2>Entrena <em>todo el cuerpo</em> desde casa, sin equipo</h2>
     <p>Abdomen, cintura, glúteos, piernas, brazos, espalda, cardio y movilidad. Elige tus ejercicios, arma tu rutina y sigue tu semana, todo en un solo lugar.</p>
+    <div class="stats" aria-label="Contenido de Fit Lat">
+      <div class="stat"><span class="stat-num" data-count="160">0</span><span class="stat-label">ejercicios</span></div>
+      <div class="stat"><span class="stat-num" data-count="8">0</span><span class="stat-label">zonas</span></div>
+      <div class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-label">rutinas</span></div>
+    </div>
     <div class="price-notice">Primeros 3 meses gratis. Después $200 MXN al mes.</div>
   </div>
 </section>
 
-<section id="ejercicios">
+<section id="ejercicios" class="reveal">
   <div class="container">
     <h2>Ejercicios</h2>
     <p class="sub">160 ejercicios de peso corporal para hacer en casa. Filtra por zona o busca por nombre.</p>
+    <div class="zone-showcase" id="zone-showcase">
+      <button type="button" class="zone-card" data-zone="abdomen"><span class="zone-photo"><img src="https://images.pexels.com/photos/8032753/pexels-photo-8032753.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Mujer haciendo plancha sobre un tapete en casa" loading="lazy" onerror="this.style.display='none'"></span><span class="zone-name">Abdomen<small>20 ejercicios</small></span></button>
+      <button type="button" class="zone-card" data-zone="cintura"><span class="zone-photo"><img src="https://images.pexels.com/photos/3758143/pexels-photo-3758143.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Mujer en plancha lateral sobre un tapete en casa" loading="lazy" onerror="this.style.display='none'"></span><span class="zone-name">Cintura<small>20 ejercicios</small></span></button>
+      <button type="button" class="zone-card" data-zone="gluteos"><span class="zone-photo"><img src="https://images.pexels.com/photos/8173430/pexels-photo-8173430.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Mujer haciendo sentadillas en su sala" loading="lazy" onerror="this.style.display='none'"></span><span class="zone-name">Glúteos<small>20 ejercicios</small></span></button>
+      <button type="button" class="zone-card" data-zone="piernas"><span class="zone-photo"><img src="https://images.pexels.com/photos/8846362/pexels-photo-8846362.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Mujer haciendo zancadas con mancuernas en casa" loading="lazy" onerror="this.style.display='none'"></span><span class="zone-name">Piernas<small>20 ejercicios</small></span></button>
+      <button type="button" class="zone-card" data-zone="brazos"><span class="zone-photo"><img src="https://images.pexels.com/photos/6598979/pexels-photo-6598979.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Hombre haciendo flexiones sobre un tapete en casa" loading="lazy" onerror="this.style.display='none'"></span><span class="zone-name">Brazos y pecho<small>20 ejercicios</small></span></button>
+      <button type="button" class="zone-card" data-zone="espalda"><span class="zone-photo"><img src="https://images.pexels.com/photos/8933832/pexels-photo-8933832.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Mujer estirando la espalda con un rodillo de espuma" loading="lazy" onerror="this.style.display='none'"></span><span class="zone-name">Espalda<small>20 ejercicios</small></span></button>
+      <button type="button" class="zone-card" data-zone="cardio"><span class="zone-photo"><img src="https://images.pexels.com/photos/7801521/pexels-photo-7801521.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Mujer saltando la cuerda en casa" loading="lazy" onerror="this.style.display='none'"></span><span class="zone-name">Cardio<small>20 ejercicios</small></span></button>
+      <button type="button" class="zone-card" data-zone="movilidad"><span class="zone-photo"><img src="https://images.pexels.com/photos/4534658/pexels-photo-4534658.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Mujer practicando yoga y estiramiento en una habitación con sol" loading="lazy" onerror="this.style.display='none'"></span><span class="zone-name">Movilidad<small>20 ejercicios</small></span></button>
+    </div>
     <div class="filters" id="filter-buttons">
       <button type="button" class="active" data-zone="todos">Todos</button>
       <button type="button" data-zone="abdomen">Abdomen</button>
@@ -166,7 +225,7 @@ footer{background:var(--dark);color:#9ca3af;text-align:center;padding:22px 0;fon
   </div>
 </section>
 
-<section id="rutinas">
+<section id="rutinas" class="reveal">
   <div class="container">
     <h2>Rutinas listas</h2>
     <p class="sub">Cinco rutinas armadas para empezar hoy. Usa "Cargar al plan" para agregarlas al día que elegiste arriba (por defecto, Lunes).</p>
@@ -174,7 +233,96 @@ footer{background:var(--dark);color:#9ca3af;text-align:center;padding:22px 0;fon
   </div>
 </section>
 
-<section id="semana">
+<section id="batidos" class="reveal">
+  <div class="container">
+    <h2>Batidos verdes</h2>
+    <p class="sub">6 batidos fáciles y económicos con ingredientes de mercado. Frescos, con fibra y con energía para entrenar.</p>
+    <div class="grid">
+      <article class="card">
+        <span class="smoothie-photo"><img src="https://images.pexels.com/photos/7937027/pexels-photo-7937027.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Espinaca y plátano en el vaso de la licuadora" loading="lazy" onerror="this.style.display='none'"></span>
+        <span class="smoothie-time">⏱ 5 minutos</span>
+        <h3>Verde clásico</h3>
+        <ul class="smoothie-ing">
+          <li>1 taza de espinaca</li>
+          <li>1 plátano</li>
+          <li>Jugo de ½ limón</li>
+          <li>1 taza de agua fría</li>
+        </ul>
+        <p class="how">Licúa todo por 1 minuto hasta que quede suave. Sirve de inmediato, con hielo si quieres.</p>
+        <p class="tip">Consejo: si el plátano está bien maduro, queda dulce sin agregar azúcar.</p>
+      </article>
+      <article class="card">
+        <span class="smoothie-photo"><img src="https://images.pexels.com/photos/4443443/pexels-photo-4443443.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Vaso de jugo verde sobre una mesa" loading="lazy" onerror="this.style.display='none'"></span>
+        <span class="smoothie-time">⏱ 5 minutos</span>
+        <h3>Pepino con limón</h3>
+        <ul class="smoothie-ing">
+          <li>½ pepino en trozos</li>
+          <li>1 vara de apio</li>
+          <li>Jugo de 1 limón</li>
+          <li>1 trocito de jengibre (1 cm)</li>
+          <li>1 taza de agua fría</li>
+        </ul>
+        <p class="how">Licúa todo con el agua. Sirve frío, con hielo al gusto.</p>
+        <p class="tip">Consejo: si lo quieres más suave, pela el pepino antes de licuar.</p>
+      </article>
+      <article class="card">
+        <span class="smoothie-photo"><img src="https://images.pexels.com/photos/616833/pexels-photo-616833.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Frascos de batido verde junto a una manzana verde" loading="lazy" onerror="this.style.display='none'"></span>
+        <span class="smoothie-time">⏱ 5 minutos</span>
+        <h3>Manzana verde con avena</h3>
+        <ul class="smoothie-ing">
+          <li>1 manzana verde en trozos</li>
+          <li>1 taza de espinaca</li>
+          <li>2 cucharadas de avena</li>
+          <li>1 taza de agua</li>
+        </ul>
+        <p class="how">Licúa primero la avena con el agua, agrega la manzana y la espinaca y vuelve a licuar. Sirve de inmediato.</p>
+        <p class="tip">Consejo: déjalo reposar 2 minutos si lo quieres más espeso.</p>
+      </article>
+      <article class="card">
+        <span class="smoothie-photo"><img src="https://images.pexels.com/photos/16963896/pexels-photo-16963896.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Batido verde de apio en un frasco y una botella" loading="lazy" onerror="this.style.display='none'"></span>
+        <span class="smoothie-time">⏱ 5 minutos</span>
+        <h3>Apio con plátano</h3>
+        <ul class="smoothie-ing">
+          <li>2 varas de apio en trozos</li>
+          <li>1 plátano</li>
+          <li>½ taza de espinaca</li>
+          <li>1 taza de agua fría</li>
+        </ul>
+        <p class="how">Licúa todo hasta que no queden trozos. Sirve frío.</p>
+        <p class="tip">Consejo: corta el apio en trozos chicos para que la licuadora trabaje menos.</p>
+      </article>
+      <article class="card">
+        <span class="smoothie-photo"><img src="https://images.pexels.com/photos/8330380/pexels-photo-8330380.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Manos sosteniendo un vaso de batido verde" loading="lazy" onerror="this.style.display='none'"></span>
+        <span class="smoothie-time">⏱ 5 minutos</span>
+        <h3>Verde con jengibre</h3>
+        <ul class="smoothie-ing">
+          <li>1 taza de espinaca</li>
+          <li>½ manzana verde</li>
+          <li>1 trocito de jengibre (1 cm)</li>
+          <li>Jugo de ½ limón</li>
+          <li>1 taza de agua fría</li>
+        </ul>
+        <p class="how">Licúa todo hasta que quede suave. Sirve con hielo.</p>
+        <p class="tip">Consejo: empieza con poco jengibre y ajusta a tu gusto, pica bastante.</p>
+      </article>
+      <article class="card">
+        <span class="smoothie-photo"><img src="https://images.pexels.com/photos/10003793/pexels-photo-10003793.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Vaso de batido verde sobre fondo amarillo" loading="lazy" onerror="this.style.display='none'"></span>
+        <span class="smoothie-time">⏱ 5 minutos</span>
+        <h3>Pepino, manzana y avena</h3>
+        <ul class="smoothie-ing">
+          <li>½ pepino en trozos</li>
+          <li>½ manzana verde</li>
+          <li>2 cucharadas de avena</li>
+          <li>Jugo de ½ limón</li>
+          <li>1 taza de agua</li>
+        </ul>
+        <p class="how">Licúa todo por 1 minuto. Sirve de inmediato.</p>
+        <p class="tip">Consejo: tómalo recién hecho para que la avena no se asiente.</p>
+      </article>
+    </div>
+  </div>
+</section>
+<section id="semana" class="reveal">
   <div class="container">
     <h2>Mi semana</h2>
     <p class="sub">Tu plan se arma aquí y vive solo durante tu visita. Descárgalo o cópialo para conservarlo.</p>
@@ -189,7 +337,7 @@ footer{background:var(--dark);color:#9ca3af;text-align:center;padding:22px 0;fon
   </div>
 </section>
 
-<section id="temporizador">
+<section id="temporizador" class="reveal">
   <div class="container">
     <h2>Temporizador</h2>
     <p class="sub">Para planchas, isométricos e intervalos. Escribe los segundos y dale a Iniciar.</p>
@@ -206,7 +354,7 @@ footer{background:var(--dark);color:#9ca3af;text-align:center;padding:22px 0;fon
   </div>
 </section>
 
-<section id="precio">
+<section id="precio" class="reveal">
   <div class="container">
     <h2>Precio</h2>
     <p class="sub">Sin letras chicas.</p>
@@ -214,12 +362,12 @@ footer{background:var(--dark);color:#9ca3af;text-align:center;padding:22px 0;fon
       <h3>Fit Lat</h3>
       <div class="big">$0 <small>/ primeros 3 meses</small></div>
       <p>Primeros 3 meses gratis. Después $200 MXN al mes.</p>
-      <p style="margin-top:10px">Acceso completo a los 160 ejercicios, las 5 rutinas, el planificador semanal y el temporizador, desde cualquier celular o computadora.</p>
+      <p style="margin-top:10px">Acceso completo a los 160 ejercicios, las 5 rutinas, los 6 batidos verdes, el planificador semanal y el temporizador, desde cualquier celular o computadora.</p>
     </div>
   </div>
 </section>
 
-<section id="preguntas">
+<section id="preguntas" class="reveal">
   <div class="container">
     <h2>Preguntas frecuentes</h2>
     <p class="sub">Lo que más nos preguntan antes de empezar.</p>
@@ -487,6 +635,8 @@ $("filter-buttons").addEventListener("click", function(ev){
   activeZone = btn.getAttribute("data-zone");
   const all = $("filter-buttons").querySelectorAll("button");
   all.forEach(function(b){ b.classList.toggle("active", b === btn); });
+  const zc = $("zone-showcase");
+  if (zc) { zc.querySelectorAll(".zone-card").forEach(function(c){ c.classList.toggle("active", c.getAttribute("data-zone") === activeZone); }); }
   renderExercises();
 });
 $("search-input").addEventListener("input", function(ev){
@@ -679,6 +829,62 @@ $("timer-reset").addEventListener("click", function(){
   $("timer-msg").textContent = "";
   paintTimer();
 });
+
+/* Visual enhancements: animated counters, scroll reveal, nav highlight, zone showcase */
+function animateCount(el){
+  const target = parseInt(el.getAttribute("data-count"), 10);
+  if (isNaN(target)) { return; }
+  const dur = 900;
+  const t0 = performance.now();
+  function step(now){
+    const p = Math.min((now - t0) / dur, 1);
+    el.textContent = Math.round(target * p);
+    if (p < 1) { requestAnimationFrame(step); }
+  }
+  requestAnimationFrame(step);
+}
+if ("IntersectionObserver" in window) {
+  const counterObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) { animateCount(en.target); counterObs.unobserve(en.target); }
+    });
+  }, {threshold: 0.4});
+  document.querySelectorAll(".stat-num").forEach(function(el){ counterObs.observe(el); });
+  const revealObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) { en.target.classList.add("visible"); revealObs.unobserve(en.target); }
+    });
+  }, {threshold: 0.12});
+  document.querySelectorAll(".reveal").forEach(function(el){ revealObs.observe(el); });
+  const navLinks = document.querySelectorAll("nav a");
+  const secObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) {
+        const id = en.target.id;
+        navLinks.forEach(function(a){ a.classList.toggle("active", a.getAttribute("href") === "#" + id); });
+      }
+    });
+  }, {rootMargin: "-45% 0px -50% 0px"});
+  ["ejercicios","rutinas","batidos","semana","temporizador","precio","preguntas"].forEach(function(id){
+    const s = document.getElementById(id);
+    if (s) { secObs.observe(s); }
+  });
+} else {
+  document.querySelectorAll(".stat-num").forEach(function(el){ el.textContent = el.getAttribute("data-count"); });
+  document.querySelectorAll(".reveal").forEach(function(el){ el.classList.add("visible"); });
+}
+const showcase = document.getElementById("zone-showcase");
+if (showcase) {
+  showcase.addEventListener("click", function(ev){
+    const card = ev.target.closest("button[data-zone]");
+    if (!card) { return; }
+    activeZone = card.getAttribute("data-zone");
+    const all = document.querySelectorAll("#filter-buttons button");
+    all.forEach(function(b){ b.classList.toggle("active", b.getAttribute("data-zone") === activeZone); });
+    showcase.querySelectorAll(".zone-card").forEach(function(c){ c.classList.toggle("active", c === card); });
+    renderExercises();
+  });
+}
 
 renderExercises();
 renderRoutines();
