@@ -585,6 +585,11 @@ function $(id){ return document.getElementById(id); }
 function unlock(){
   $("gate").style.display = "none";
   $("main-content").style.display = "block";
+  try {
+    document.querySelectorAll(".reveal").forEach(function(el){
+      if (el.getBoundingClientRect().top < window.innerHeight) { el.classList.add("visible"); }
+    });
+  } catch(e2) {}
   try { localStorage.setItem("fitlat_access", "ok"); } catch(e) {}
 }
 function tryUnlock(){
@@ -854,7 +859,7 @@ if ("IntersectionObserver" in window) {
     entries.forEach(function(en){
       if (en.isIntersecting) { en.target.classList.add("visible"); revealObs.unobserve(en.target); }
     });
-  }, {threshold: 0.12});
+  }, {threshold: 0, rootMargin: "0px 0px -20px 0px"});
   document.querySelectorAll(".reveal").forEach(function(el){ revealObs.observe(el); });
   const navLinks = document.querySelectorAll("nav a");
   const secObs = new IntersectionObserver(function(entries){
